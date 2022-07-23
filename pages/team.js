@@ -16,6 +16,7 @@ function Home() {
 
   useEffect(() => {
     getPlayers();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
