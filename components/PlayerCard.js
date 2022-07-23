@@ -1,18 +1,39 @@
+import PropTypes from 'prop-types';
+import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { deleteSinglePlayer } from '../.husky/api/playerData';
 
-export default function PlayerCard() {
+export default function PlayerCard({ playerObj, onUpdate }) {
+  const deleteThisPlayer = () => {
+    if (window.confirm(`Delete ${playerObj.name}?`)) {
+      deleteSinglePlayer(playerObj.firebaseKey).then(() => onUpdate());
+    }
+  };
+
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Img variant="top" src={playerObj.imageUrl} alt={playerObj.name} style={{ height: '400px' }} />
       <Card.Body>
-        <Card.Title>Name</Card.Title>
+        <Card.Title>{playerObj.name}</Card.Title>
         <Card.Text>
-          Position:
+          Position: {playerObj.position}
         </Card.Text>
-        <Button variant="success">Edit</Button>
-        <Button variant="danger">Delete</Button>
+        <Link href={`/player/edit/${playerObj.firebaseKey}`} passHref>
+          <Button variant="info">EDIT</Button>
+        </Link>
+        <Button variant="danger" onClick={deleteThisPlayer}>Delete</Button>
       </Card.Body>
     </Card>
   );
 }
+
+PlayerCard.propTypes = {
+  playerObj: PropTypes.shape({
+    imageUrl: PropTypes.string,
+    name: PropTypes.string,
+    position: PropTypes.string,
+    firebaseKey: PropTypes.string,
+  }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
+};
