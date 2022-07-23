@@ -5,7 +5,7 @@ import { useAuth } from '../utils/context/authContext';
 import { getAllPlayers } from '../.husky/api/playerData';
 import PlayerCard from '../components/PlayerCard';
 
-function Home() {
+function Players() {
   const [players, setPlayers] = useState([]);
 
   const { user } = useAuth();
@@ -34,4 +34,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Players;

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { createPlayer, updatePlayer } from '../../.husky/api/playerData';
+import { getAllTeams } from '../../.husky/api/teamData';
 
 const initialState = {
   name: '',
@@ -15,8 +16,15 @@ const initialState = {
 
 function PlayerForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
+  const [teams, setAuthors] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
+
+  useEffect(() => {
+    getAllTeams(user.uid).then(setAuthors);
+
+    if (obj.firebaseKey) setFormInput(obj);
+  }, [obj, user]);
 
   useEffect(() => {
     if (obj.firebaseKey) setFormInput(obj);
@@ -34,11 +42,11 @@ function PlayerForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updatePlayer(formInput)
-        .then(() => router.push('/team'));
+        .then(() => router.push('/players'));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createPlayer(payload).then(() => {
-        router.push('/team');
+        router.push('/players');
       });
     }
   };
@@ -56,6 +64,28 @@ function PlayerForm({ obj }) {
       <FloatingLabel controlId="floatingInput2" label="Player Image" className="mb-3">
         <Form.Control type="url" placeholder="Add Player Photo" name="imageUrl" value={formInput.imageUrl} onChange={handleChange} required />
       </FloatingLabel>
+      <FloatingLabel controlId="floatingSelect" label="Team">
+        <Form.Select
+          aria-label="Team"
+          name="team_id"
+          onChange={handleChange}
+          className="mb-3"
+          required
+        >
+          <option value="">Select a Team</option>
+          {
+            teams.map((team) => (
+              <option
+                key={team.firebaseKey}
+                value={team.firebaseKey}
+                selected={obj.team_id === team.firebaseKey}
+              >
+                {team.name}
+              </option>
+            ))
+          }
+        </Form.Select>
+      </FloatingLabel>
       <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Player</Button>
     </Form>
   );
@@ -67,6 +97,7 @@ PlayerForm.propTypes = {
     position: PropTypes.string,
     imageUrl: PropTypes.string,
     firebaseKey: PropTypes.string,
+    team_id: PropTypes.string,
   }),
 };
 
