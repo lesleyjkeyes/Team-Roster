@@ -1,5 +1,6 @@
+import React from 'react';
+import PlayerForm from '../../components/Forms/PlayerForm';
+
 export default function AddPlayer() {
-  return (
-    <h1>Add New Player</h1>
-  );
+  return (<PlayerForm />);
 }
