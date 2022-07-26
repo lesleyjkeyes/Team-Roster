@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import PlayerForm from '../../../components/Forms/PlayerForm';
 import { getSinglePlayer } from '../../../.husky/api/playerData';
 
-export default function EditBook() {
+export default function EditPlayer() {
   const [editItem, setEditItem] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;

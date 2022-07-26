@@ -23,6 +23,13 @@ const updateTeam = (teamObj) => new Promise((resolve, reject) => {
 });
 
 //Delete Team
+const deleteSingleTeam = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/teams/${firebaseKey}.json`)
+    .then(() => {
+      getAllTeams().then((teamsArray) => resolve(teamsArray));
+    })
+    .catch((error) => reject(error));
+});
 
 // Get All Teams
 const getAllTeams = (uid) => new Promise((resolve, reject) => {
@@ -44,9 +51,18 @@ const getSingleTeam = (firebaseKey) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+// Get a Single Team's Players
+const getTeamPlayers = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/players.json?orderBy="team_id"&equalTo="${firebaseKey}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
 export {
   getAllTeams,
   getSingleTeam,
   createTeam,
   updateTeam,
+  getTeamPlayers,
+  deleteSingleTeam,
 }
