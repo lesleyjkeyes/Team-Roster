@@ -80,7 +80,7 @@ function PlayerForm({ obj }) {
                 value={team.firebaseKey}
                 selected={obj.team_id === team.firebaseKey}
               >
-                {team.name}
+                {team.teamName}
               </option>
             ))
           }

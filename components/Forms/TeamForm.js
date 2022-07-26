@@ -8,7 +8,7 @@ import { useAuth } from '../../utils/context/authContext';
 import { createTeam, updateTeam } from '../../.husky/api/teamData';
 
 const initialState = {
-  name: '',
+  teamName: '',
   imageUrl: '',
 };
 
@@ -47,7 +47,7 @@ function TeamForm({ obj }) {
     <Form onSubmit={handleSubmit}>
       <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Team</h2>
       <FloatingLabel controlId="floatingInput1" label="Team Name" className="mb-3">
-        <Form.Control type="text" placeholder="Enter Team's Name" name="name" value={formInput.name} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="Enter Team's Name" name="teamName" value={formInput.teamName} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingInput2" label="Team Image" className="mb-3">
         <Form.Control type="url" placeholder="Add Team Photo" name="imageUrl" value={formInput.imageUrl} onChange={handleChange} required />
@@ -59,7 +59,7 @@ function TeamForm({ obj }) {
 
 TeamForm.propTypes = {
   obj: PropTypes.shape({
-    name: PropTypes.string,
+    teamName: PropTypes.string,
     imageUrl: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
