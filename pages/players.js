@@ -26,7 +26,7 @@ function Players() {
   return (
     <div className="text-center my-4">
       <Link href="/player/new" passHref>
-        <Button>Add A New Player</Button>
+        <Button variant="dark">Add A New Player</Button>
       </Link>
       <Form className="d-flex">
         <Form.Control
@@ -37,7 +37,7 @@ function Players() {
           value={searchTerm}
           onChange={handleChange}
         />
-        <Button variant="outline-success">Search</Button>
+        <Button variant="dark">Search</Button>
       </Form>
       <div className="d-flex flex-wrap">
         {players.map((player) => (

@@ -12,7 +12,7 @@ export default function PlayerCard({ playerObj, onUpdate }) {
   };
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18rem', margin: '10px' }}>
       <Card.Img variant="top" src={playerObj.imageUrl} alt={playerObj.name} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Title>{playerObj.name}</Card.Title>
@@ -20,9 +20,9 @@ export default function PlayerCard({ playerObj, onUpdate }) {
           Position: {playerObj.position}
         </Card.Text>
         <Link href={`/player/edit/${playerObj.firebaseKey}`} passHref>
-          <Button variant="info">EDIT</Button>
+          <Button variant="info" style={{ margin: '5px' }}>EDIT</Button>
         </Link>
-        <Button variant="danger" onClick={deleteThisPlayer}>Delete</Button>
+        <Button variant="danger" style={{ margin: '5px' }} onClick={deleteThisPlayer}>Delete</Button>
       </Card.Body>
     </Card>
   );

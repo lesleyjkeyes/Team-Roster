@@ -12,7 +12,7 @@ const viewTeamDetails = (teamFirebaseKey) => new Promise((resolve, reject) => {
 const deleteTeamPlayers = (teamId) => new Promise((resolve, reject) => {
   getTeamPlayers(teamId).then((playersArray) => {
     console.warn(playersArray, 'Team Players');
-    const deletePlayerPromises = playersArray.map((player) => deleteSinglePlayer(book.firebaseKey));
+    const deletePlayerPromises = playersArray.map((player) => deleteSinglePlayer(player.firebaseKey));
 
     Promise.all(deletePlayerPromises).then(() => {
       deleteSingleTeam(teamId).then(resolve);
