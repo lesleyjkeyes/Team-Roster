@@ -1,10 +1,7 @@
-import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
-import { useAuth } from '../utils/context/authContext';
+import Image from 'next/image';
+import logo from '../components/images/trueAmerican.jpg';
 
 function Home() {
-  const { user } = useAuth();
-
   return (
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
@@ -15,11 +12,8 @@ function Home() {
         margin: '0 auto',
       }}
     >
-      <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
-      </Button>
+      {/* <h1 style={{ color: 'white' }}>Hello {user.displayName}! </h1> */}
+      <Image src={logo} alt="True American" />
     </div>
   );
 }

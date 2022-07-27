@@ -22,7 +22,7 @@ function Teams() {
   return (
     <div className="text-center my-4">
       <Link href="/team/new" passHref>
-        <Button>Add A New Team</Button>
+        <Button variant="dark">Add A New Team</Button>
       </Link>
       <div className="d-flex flex-wrap">
         {teams.map((team) => (
