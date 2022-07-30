@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { deleteTeamPlayers } from '../.husky/api/mergedData';
 import { getTeamPlayers } from '../.husky/api/teamData';
 
 export default function TeamCard({ teamObj, onUpdate }) {
-  const [toggle, setToggle] = useState(false);
+  // const [toggle, setToggle] = useState(false);
 
   const deleteThisTeam = () => {
     if (window.confirm(`Delete ${teamObj.teamName}?`)) {
@@ -16,13 +16,13 @@ export default function TeamCard({ teamObj, onUpdate }) {
       });
     }
   };
-  const handleToggle = () => {
-    if (toggle === false) {
-      setToggle(true);
-    } else {
-      setToggle(false);
-    }
-  };
+  // const handleToggle = () => {
+  //   if (toggle === false) {
+  //     setToggle(true);
+  //   } else {
+  //     setToggle(false);
+  //   }
+  // };
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
       <Card.Img variant="top" src={teamObj.imageUrl} alt={teamObj.teamName} style={{ height: '400px' }} />
@@ -35,13 +35,13 @@ export default function TeamCard({ teamObj, onUpdate }) {
           <Button variant="dark">Edit</Button>
         </Link>
         <Button variant="danger" style={{ margin: '5px' }} onClick={deleteThisTeam}>Delete</Button>
-        <label className="switch">
+        {/* <label className="switch">
           <input type="checkbox" onClick={handleToggle} />
           <span className="slider round" />
         </label>
         <h6>
           {toggle === false ? 'Public' : 'Private'}
-        </h6>
+        </h6> */}
       </Card.Body>
     </Card>
   );
