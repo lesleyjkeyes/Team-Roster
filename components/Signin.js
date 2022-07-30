@@ -1,6 +1,8 @@
 import React from 'react';
+import Image from 'next/image';
 import { Button } from 'react-bootstrap';
 import { signIn } from '../utils/auth';
+import logo from './images/trueAmerican.jpg';
 
 function Signin() {
   return (
@@ -13,9 +15,8 @@ function Signin() {
         margin: '0 auto',
       }}
     >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
+      <Image src={logo} alt="True American" />
+      <Button type="button" variant="dark" size="lg" className="copy-btn" onClick={signIn}>
         Sign In
       </Button>
     </div>
